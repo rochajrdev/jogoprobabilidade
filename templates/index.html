@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo na Web</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Bem-vindo ao Jogo!</h1>
+    <form method="post">
+        <label for="palpite">Digite seu palpite:</label>
+        <input type="text" id="palpite" name="palpite" required>
+        <button type="submit">Enviar</button>
+    </form>
+    {% if resultado %}
+        <p>{{ resultado }}</p>
+    {% endif %}
+</body>
+</html>
