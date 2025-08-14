@@ -1,0 +1,681 @@
+/* Importando fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Righteous&display=swap');
+
+/* Variáveis de cores */
+:root {
+    --primary-color: #6C63FF;
+    --primary-dark: #5451E5;
+    --secondary-color: #4CAF50;
+    --secondary-dark: #45A049;
+    --danger-color: #FF4B4B;
+    --danger-dark: #FF3333;
+    --warning-color: #FFB800;
+    --success-color: #00C853;
+    --background-color: #F0F2F9;
+    --surface-color: #FFFFFF;
+    --text-color: #2D3748;
+    --text-light: #718096;
+    --border-color: #E2E8F0;
+    
+    /* Gradientes */
+    --red-gradient: linear-gradient(135deg, #FF6B6B, #FF4B4B);
+    --blue-gradient: linear-gradient(135deg, #6C63FF, #5451E5);
+    --green-gradient: linear-gradient(135deg, #4CAF50, #45A049);
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+/* Estilos base */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background-color);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Tela inicial (Regras) */
+.regras {
+    background: var(--surface-color);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-lg);
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.titulo-principal {
+    font-family: 'Righteous', cursive;
+    font-size: 3em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.regras-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin: 40px 0;
+    align-items: start;
+}
+
+.regras-coluna {
+    text-align: left;
+}
+
+.regras-lista {
+    margin-bottom: 30px;
+}
+
+.regras-lista h2 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-family: 'Righteous', cursive;
+}
+
+.regras-lista ul {
+    list-style: none;
+    padding: 0;
+}
+
+.regras-lista li {
+    margin: 15px 0;
+    font-size: 1.1em;
+    position: relative;
+    padding-left: 30px;
+}
+
+.regras-lista li:before {
+    content: '•';
+    color: var(--primary-color);
+    font-size: 1.5em;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.pontos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.ponto-item {
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    transition: 0.3s ease;
+}
+
+.ponto-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.blue-bg { background: var(--blue-gradient); }
+.red-bg { background: var(--red-gradient); }
+.green-bg { background: var(--green-gradient); }
+
+.ponto-item span {
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.ponto-item strong {
+    font-size: 1.2em;
+}
+
+.preview-tabuleiro {
+    background: var(--background-color);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 20px;
+}
+
+.mini-tabuleiro {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 6px;
+    background: var(--surface-color);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-sm);
+}
+
+.mini-linha {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+}
+
+.mini-casa {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.mini-casa.red { background: var(--red-gradient); }
+.mini-casa.blue { background: var(--blue-gradient); }
+.mini-casa.green { background: var(--green-gradient); }
+
+.mini-casa:hover {
+    transform: scale(1.2);
+    box-shadow: var(--shadow-md);
+    z-index: 1;
+}
+
+.vitoria-info {
+    background: linear-gradient(135deg, var(--warning-color), #FFA000);
+    padding: 15px 20px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: var(--shadow-md);
+    transition: 0.3s ease;
+}
+
+.vitoria-info:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-principal {
+    background: var(--primary-color);
+    color: white;
+    padding: 20px 40px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin: 40px auto 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-principal:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Responsividade da tela inicial */
+@media (max-width: 768px) {
+    .regras {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .titulo-principal {
+        font-size: 2.2em;
+    }
+
+    .regras-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .pontos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mini-tabuleiro {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .mini-casa {
+        width: 20px;
+        height: 20px;
+    }
+
+    .btn-principal {
+        width: 100%;
+        padding: 15px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .regras {
+        padding: 15px;
+    }
+
+    .titulo-principal {
+        font-size: 1.8em;
+    }
+
+    .regras-lista h2 {
+        font-size: 1.5em;
+    }
+
+    .regras-lista li {
+        font-size: 1em;
+    }
+
+    .mini-casa {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Layout do jogo */
+#jogo {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 20px;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Cabeçalho do jogo */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: var(--surface-color);
+    border-radius: 15px;
+    box-shadow: var(--shadow-md);
+}
+
+.titulo-jogo {
+    font-family: 'Righteous', cursive;
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 2em;
+}
+
+.btn-ajuda {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-ajuda:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: rotate(15deg);
+}
+
+/* Placar e informações */
+.info-jogo {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.placar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    padding: 20px;
+    background: var(--surface-color);
+    border-radius: 15px;
+    box-shadow: var(--shadow-md);
+}
+
+.jogador {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background: var(--background-color);
+    position: relative;
+}
+
+.jogador-avatar {
+    font-size: 2em;
+    background: var(--primary-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jogador-info h3 {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.pontos {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.pontos-valor {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.pontos-texto {
+    color: var(--text-light);
+    font-size: 0.9em;
+}
+
+.versus {
+    font-family: 'Righteous', cursive;
+    font-size: 1.5em;
+    color: var(--text-light);
+}
+
+.vez {
+    background: var(--success-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Área principal do jogo */
+.game-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    height: calc(100vh - 200px);
+}
+
+/* Controles laterais */
+.game-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+}
+
+.dados-container {
+    background: var(--surface-color);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-md);
+}
+
+.dados-info {
+    text-align: center;
+    background: var(--background-color);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.dados-label {
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.dados-valores {
+    font-size: 2em;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Tabuleiro */
+.game-board {
+    background: var(--surface-color);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.tabuleiro {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 8px;
+    padding: 10px;
+}
+
+.linha {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.casa {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.casa.red { background: var(--red-gradient); }
+.casa.blue { background: var(--blue-gradient); }
+.casa.green { background: var(--green-gradient); }
+
+.casa:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.casa.selecionada {
+    border: 3px solid var(--warning-color);
+    box-shadow: 0 0 20px var(--warning-color);
+    animation: pulse 1s infinite;
+}
+
+/* Perguntas (Modal) */
+.pergunta-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--surface-color);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    width: 90%;
+    max-width: 500px;
+    z-index: 1000;
+}
+
+.pergunta-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+#tempo-container {
+    background: var(--warning-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+#pergunta-texto {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+}
+
+.opcoes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.btn-opcao {
+    padding: 15px;
+    font-size: 1em;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-opcao:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Botões */
+.btn-dado, .btn-secundario {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-dado {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-secundario {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-dado:hover, .btn-secundario:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Mensagens */
+.mensagem {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-color);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 10px;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Animações */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -20px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .game-container {
+        grid-template-columns: 1fr;
+    }
+
+    .game-sidebar {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .dados-container {
+        flex: 1;
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    #jogo {
+        height: auto;
+        padding: 10px;
+    }
+
+    .placar {
+        grid-template-columns: 1fr;
+    }
+
+    .versus {
+        display: none;
+    }
+
+    .opcoes {
+        grid-template-columns: 1fr;
+    }
+
+    .casa {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .titulo-jogo {
+        font-size: 1.5em;
+    }
+
+    .casa {
+        width: 35px;
+        height: 35px;
+        border-radius: 8px;
+    }
+
+    .pergunta-container {
+        padding: 20px;
+    }
+}

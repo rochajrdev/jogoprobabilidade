@@ -2,66 +2,185 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1a1a1a">
     <title>Jogo de Probabilidade 🎲</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style_new.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
     <div class="container">
-        <div id="regras" class="regras">
-            <h1>Bem-vindo ao jogo de tabuleiro de probabilidade!🎲</h1>
-            <div class="regras-lista">
-                <h2>📌 REGRAS DO JOGO 📌</h2>
-                <ul>
-                    <li>➖ Cada jogador lançará 2 vezes o dado.</li>
-                    <li>➖ Cada cor terá pontuações específicas:</li>
-                    <li>  • Azul🟦: 5 pontos</li>
-                    <li>  • Vermelho🟥: 3 pontos</li>
-                    <li>  • Verde🟩: 2 pontos</li>
-                    <li>➖ Cada jogador terá 40 segundos para responder a questão.</li>
-                    <li>➖ Caso o tempo acabe ou a resposta esteja incorreta, passa a vez.</li>
-                    <li>➖ O campeão é quem acumular 10 pontos primeiro ou tirar a casa premiada.🏆</li>
-                </ul>
+        <div id="regras" class="regras animate__animated animate__fadeIn">
+            <h1 class="titulo-principal animate__animated animate__bounceIn">Jogo de Probabilidade 🎲</h1>
+            
+            <div class="regras-container">
+                <div class="regras-coluna animate__animated animate__fadeInLeft">
+                    <div class="regras-lista">
+                        <h2>Como Jogar 🎯</h2>
+                        <ul>
+                            <li>Jogue os dados duas vezes para escolher uma posição no tabuleiro</li>
+                            <li>Responda uma pergunta de probabilidade</li>
+                            <li>Ganhe pontos baseado na cor da casa:</li>
+                        </ul>
+                    </div>
+
+                    <div class="pontos-grid">
+                        <div class="ponto-item blue-bg">
+                            <span>Azul</span>
+                            <strong>5 pontos</strong>
+                        </div>
+                        <div class="ponto-item red-bg">
+                            <span>Vermelho</span>
+                            <strong>3 pontos</strong>
+                        </div>
+                        <div class="ponto-item green-bg">
+                            <span>Verde</span>
+                            <strong>2 pontos</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="regras-coluna animate__animated animate__fadeInRight">
+                    <div class="preview-tabuleiro">
+                        <div class="mini-tabuleiro">
+                            <div class="mini-linha">
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa red"></div>
+                            </div>
+                            <div class="mini-linha">
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                            </div>
+                            <div class="mini-linha">
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                            </div>
+                            <div class="mini-linha">
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                            </div>
+                            <div class="mini-linha">
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                            </div>
+                            <div class="mini-linha">
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa red"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="vitoria-info animate__animated animate__fadeInUp">
+                        <p>🏆 Vença acumulando 10 pontos ou encontrando a casa premiada!</p>
+                    </div>
+                </div>
             </div>
-            <button id="comecar-jogo" class="btn-principal">Começar Jogo 🎮</button>
+
+            <button id="comecar-jogo" class="btn-principal animate__animated animate__pulse animate__infinite">
+                <span class="btn-icon">🎮</span>
+                <span class="btn-texto">Começar Jogo</span>
+            </button>
         </div>
 
-        <div id="jogo" class="jogo" style="display: none;">
-            <h1>Jogo de Probabilidade 🎲</h1>
+        <div id="jogo" class="jogo animate__animated animate__fadeIn" style="display: none;">
+            <div class="game-header">
+                <h1 class="titulo-jogo">Jogo de Probabilidade 🎲</h1>
+                <button id="ajuda" class="btn-ajuda">
+                    <span class="btn-icon">❓</span>
+                </button>
+            </div>
             
             <div class="info-jogo">
                 <div class="placar">
-                    <div class="jogador">
-                        <h3>Jogador 1</h3>
-                        <p>Pontos: <span id="pontos-1">0</span></p>
+                    <div class="jogador" id="jogador1">
+                        <div class="jogador-avatar">👤</div>
+                        <div class="jogador-info">
+                            <h3>Jogador 1</h3>
+                            <div class="pontos">
+                                <span class="pontos-valor" id="pontos-1">0</span>
+                                <span class="pontos-texto">pontos</span>
+                            </div>
+                        </div>
+                        <div class="jogador-status ativo" id="status-1"></div>
                     </div>
-                    <div class="jogador">
-                        <h3>Jogador 2</h3>
-                        <p>Pontos: <span id="pontos-2">0</span></p>
+                    <div class="versus">VS</div>
+                    <div class="jogador" id="jogador2">
+                        <div class="jogador-avatar">👤</div>
+                        <div class="jogador-info">
+                            <h3>Jogador 2</h3>
+                            <div class="pontos">
+                                <span class="pontos-valor" id="pontos-2">0</span>
+                                <span class="pontos-texto">pontos</span>
+                            </div>
+                        </div>
+                        <div class="jogador-status" id="status-2"></div>
                     </div>
                 </div>
-                <div class="vez">
+                <div class="vez animate__animated animate__pulse animate__infinite">
+                    <div class="vez-icon">👉</div>
                     <p>Vez do Jogador <span id="jogador-atual">1</span></p>
                 </div>
             </div>
 
-            <div class="controles">
-                <button id="jogar-dado" class="btn-principal">Girar Dado 🎲</button>
-                <div id="animacao-dado" class="animacao-dado" style="display: none;">
-                    <span id="valor-dado-atual"></span>
+            <div class="game-area">
+                <div class="controles">
+                    <div class="dados-container">
+                        <div class="dados-info">
+                            <div class="dados-label">Dados Lançados:</div>
+                            <div id="resultado-dados" class="dados-valores">
+                                <span id="valor-dados"></span>
+                            </div>
+                        </div>
+                        <button id="jogar-dado" class="btn-dado animate__animated animate__pulse animate__infinite">
+                            <span class="dado-icon">🎲</span>
+                            <span class="dado-texto">Lançar Dado</span>
+                        </button>
+                    </div>
+                    <div id="animacao-dado" class="animacao-dado animate__animated animate__bounceIn" style="display: none;">
+                        <div class="dado-bg">
+                            <span id="valor-dado-atual"></span>
+                        </div>
+                    </div>
                 </div>
-                <div id="resultado-dados">
-                    <p>Dados: <span id="valor-dados"></span></p>
-                </div>
-            </div>
 
-            <div class="tabuleiro">
-                {% for linha in tabuleiro %}
-                <div class="linha">
-                    {% for cor in linha %}
-                    <div class="casa {{ cor }}" data-cor="{{ cor }}"></div>
-                    {% endfor %}
+                <div class="game-board">
+                    <div class="tabuleiro animate__animated animate__zoomIn">
+                        {% for linha in tabuleiro %}
+                        <div class="linha">
+                            {% for cor in linha %}
+                            <div class="casa {{ cor }}" data-cor="{{ cor }}"></div>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                {% endfor %}
             </div>
 
             <div id="pergunta-container" class="pergunta-container" style="display: none;">
