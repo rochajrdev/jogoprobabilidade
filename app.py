@@ -294,26 +294,30 @@ def verificar_resposta():
     dados = request.get_json()
     resposta_usuario = dados['resposta']
     coordenada = dados['coordenada']
+    cor = dados['cor']
     
     coord_key = f"{coordenada['x']},{coordenada['y']}"
+    pontos_ganhos = 0
     
     if coord_key in PERGUNTAS:
         pergunta = PERGUNTAS[coord_key]
         correto = resposta_usuario == pergunta['resposta']
         
-        if correto:
-            x, y = int(coordenada['x']) - 1, int(coordenada['y']) - 1
-            cor = CORES[x][y]
-            pontos = PONTOS_COR[cor]
-            session['pontos'][str(session['jogador_atual'])] += pontos
+        if correto and cor in PONTOS_COR:
+            pontos_ganhos = PONTOS_COR[cor]
+            jogador_atual = str(session['jogador_atual'])
+            session['pontos'][jogador_atual] = int(session['pontos'][jogador_atual]) + pontos_ganhos
+            session.modified = True
             
-        session['jogador_atual'] = 2 if session['jogador_atual'] == 1 else 1
-        session.modified = True
+        # Só muda o jogador depois de atualizar os pontos
+        proximo_jogador = 2 if session['jogador_atual'] == 1 else 1
+        session['jogador_atual'] = proximo_jogador
         
         return jsonify({
             'correto': correto,
             'pontos': session['pontos'],
-            'jogador_atual': session['jogador_atual']
+            'jogador_atual': proximo_jogador,
+            'pontos_ganhos': pontos_ganhos
         })
     
     return jsonify({'erro': 'Coordenada inválida'})

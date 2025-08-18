@@ -316,7 +316,17 @@
             }
 
             const container = document.getElementById('pergunta-container');
+            const casaSelecionada = document.querySelector('.casa.selecionada');
+            const cor = casaSelecionada ? casaSelecionada.dataset.cor : '';
+            
             container.style.display = 'block';
+            // Remove todas as classes de cor antigas
+            container.classList.remove('red', 'blue', 'green');
+            // Adiciona a classe da cor atual
+            if (cor) {
+                container.classList.add(cor);
+            }
+            
             document.getElementById('pergunta-texto').textContent = data.questao;
 
             const opcoesContainer = document.getElementById('opcoes-container');
@@ -354,6 +364,9 @@
             clearInterval(timer);
             
             try {
+                const casaSelecionada = document.querySelector('.casa.selecionada');
+                const cor = casaSelecionada ? casaSelecionada.dataset.cor : '';
+                
                 const response = await fetch('/verificar_resposta', {
                     method: 'POST',
                     headers: {
@@ -361,19 +374,17 @@
                     },
                     body: JSON.stringify({
                         resposta: resposta,
-                        coordenada: coordenada
+                        coordenada: coordenada,
+                        cor: cor // Enviando a cor para o backend
                     })
                 });
 
                 const data = await response.json();
                 
-                const casaSelecionada = document.querySelector('.casa.selecionada');
-                const cor = casaSelecionada ? casaSelecionada.dataset.cor : '';
-                
                 document.getElementById('pergunta-container').style.display = 'none';
                 
                 if (data.correto) {
-                    mostrarMensagem(`✅ Resposta correta! Jogador ganha ${PONTOS_COR[cor]} pontos.`);
+                    mostrarMensagem(`✅ Resposta correta! Jogador ganha ${data.pontos_ganhos} pontos.`);
                 } else {
                     mostrarMensagem('❌ Resposta errada! Você perdeu a vez.');
                 }
