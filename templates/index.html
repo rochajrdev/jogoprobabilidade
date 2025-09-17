@@ -1,67 +1,462 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>500 — Erro do servidor</title>
-  <style>
-    :root{
-      --bg:#fff;
-      --muted:#6b7280;
-      --panel:#f7f8fa;
-      --accent:#0b1320;
-      --btn-bg:#0b1320;
-      --btn-text:#ffffff;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--accent)}
-    .center-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
-    .card{width:100%;max-width:760px;background:var(--panel);border:1px solid rgba(11,19,32,0.06);padding:28px;border-radius:10px;box-shadow:0 10px 30px rgba(6,12,22,0.04)}
-    h1{font-size:26px;margin:0 0 8px}
-    .lead{margin:0 0 14px;color:var(--muted);line-height:1.45}
-    .host{display:inline-block;padding:6px 10px;border-radius:8px;background:#fff;border:1px solid rgba(11,19,32,0.04);font-family:ui-monospace,monospace}
-    .actions{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
-    .btn{padding:10px 14px;border-radius:8px;background:var(--btn-bg);color:var(--btn-text);text-decoration:none;font-weight:600;border:none;cursor:pointer}
-    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(11,19,32,0.06)}
-    .hint{font-size:13px;color:var(--muted);margin-top:12px}
-    .meta{font-size:13px;color:var(--muted);margin-top:12px;display:flex;gap:18px;flex-wrap:wrap}
-    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
-    @media (max-width:520px){
-      .card{padding:20px}
-      h1{font-size:22px}
-      .actions{justify-content:flex-start}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Jogo de Probabilidade 🎲</title>
+    <link rel="stylesheet" href="/static/style_new.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 </head>
 <body>
-  <main class="center-wrap" role="main" aria-labelledby="title">
-    <section class="card" aria-labelledby="title">
-      <h1 id="title">500 — Erro interno do servidor</h1>
-      <p class="lead">O servidor encontrou um erro inesperado ao processar a sua requisição para <span class="host">jogoprobabilidade.vercel.app</span>. Estamos investigando o problema.</p>
+    <div class="container">
+        <div id="regras" class="regras animate__animated animate__fadeIn">
+            <h1 class="titulo-principal animate__animated animate__bounceIn">Jogo de Probabilidade 🎲</h1>
+            
+            <div class="regras-container">
+                <div class="regras-coluna animate__animated animate__fadeInLeft">
+                    <div class="regras-lista">
+                        <h2>Como Jogar 🎯</h2>
+                        <ul>
+                            <li>Jogue os dados duas vezes para escolher uma posição no tabuleiro</li>
+                            <li>Responda uma pergunta de probabilidade</li>
+                            <li>Ganhe pontos baseado na cor da casa:</li>
+                        </ul>
+                    </div>
 
-      <div class="actions">
-        <button class="btn" onclick="location.reload()">Tentar novamente</button>
-        <button class="btn ghost" onclick="showAdminNote()">Informações (administrador)</button>
-      </div>
+                    <div class="pontos-grid">
+                        <div class="ponto-item blue-bg">
+                            <span>Azul</span>
+                            <strong>5 pontos</strong>
+                        </div>
+                        <div class="ponto-item red-bg">
+                            <span>Vermelho</span>
+                            <strong>3 pontos</strong>
+                        </div>
+                        <div class="ponto-item green-bg">
+                            <span>Verde</span>
+                            <strong>2 pontos</strong>
+                        </div>
+                    </div>
+                </div>
 
-      <p class="hint">Se você for visitante, aguarde alguns minutos e tente novamente. Caso precise de acesso imediato, contate o responsável técnico do serviço.</p>
+                <div class="regras-coluna animate__animated animate__fadeInRight">
+                    <div class="preview-tabuleiro">
+                        <div class="mini-tabuleiro">
+                            <div class="mini-linha">
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa red"></div>
+                            </div>
+                            <div class="mini-linha">
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                            </div>
+                            <div class="mini-linha">
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                            </div>
+                            <div class="mini-linha">
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                            </div>
+                            <div class="mini-linha">
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa green"></div>
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa green"></div>
+                            </div>
+                            <div class="mini-linha">
+                                <div class="mini-casa red"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa blue"></div>
+                                <div class="mini-casa red"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="vitoria-info animate__animated animate__fadeInUp">
+                        <p>🏆 Vença acumulando 10 pontos ou encontrando a casa premiada!</p>
+                    </div>
+                </div>
+            </div>
 
-      <div class="meta" aria-hidden="false">
-        <div><strong>Código de erro:</strong> <span style="font-family:ui-monospace,monospace">ERROR_EXECUTION_FAILURE</span></div>
-        <div><strong>Instância:</strong> <span style="font-family:ui-monospace,monospace">edge-01-7c4a</span></div>
-      </div>
+            <button id="comecar-jogo" class="btn-principal animate__animated animate__pulse animate__infinite">
+                <span class="btn-icon">🎮</span>
+                <span class="btn-texto">Começar Jogo</span>
+            </button>
+        </div>
 
-      <footer>
-Esta página indica um problema técnico temporário. Tentar novamente em alguns minutos costuma resolver.<br>
-  Desenvolvido por: <strong>Adailson Rocha Adriano Junior</strong> • <a href="mailto:adailson.junior073@academico.ifs.edu.br">Entre em contato</a>      </footer>
-    </section>
-  </main>
+        <div id="jogo" class="jogo animate__animated animate__fadeIn" style="display: none;">
+            <div class="game-header">
+                <h1 class="titulo-jogo">Jogo de Probabilidade 🎲</h1>
+                <button id="ajuda" class="btn-ajuda">
+                    <span class="btn-icon">❓</span>
+                </button>
+            </div>
+            
+            <div class="info-jogo">
+                <div class="placar">
+                    <div class="jogador" id="jogador1">
+                        <div class="jogador-avatar">👤</div>
+                        <div class="jogador-info">
+                            <h3>Jogador 1</h3>
+                            <div class="pontos">
+                                <span class="pontos-valor" id="pontos-1">0</span>
+                                <span class="pontos-texto">pontos</span>
+                            </div>
+                        </div>
+                        <div class="jogador-status ativo" id="status-1"></div>
+                    </div>
+                    <div class="versus">VS</div>
+                    <div class="jogador" id="jogador2">
+                        <div class="jogador-avatar">👤</div>
+                        <div class="jogador-info">
+                            <h3>Jogador 2</h3>
+                            <div class="pontos">
+                                <span class="pontos-valor" id="pontos-2">0</span>
+                                <span class="pontos-texto">pontos</span>
+                            </div>
+                        </div>
+                        <div class="jogador-status" id="status-2"></div>
+                    </div>
+                </div>
+                <div class="vez animate__animated animate__pulse animate__infinite">
+                    <div class="vez-icon">👉</div>
+                    <p>Vez do Jogador <span id="jogador-atual">1</span></p>
+                </div>
+            </div>
 
-  <script>
-    window.showAdminNote = function(){
-      alert('Admins: verifique logs de execução e reinicie o deployment se necessário.');
-    };
-  </script>
+            <div class="game-area">
+                <div class="controles">
+                    <div class="dados-container">
+                        <div class="dados-info">
+                            <div class="dados-label">Dados Lançados:</div>
+                            <div id="resultado-dados" class="dados-valores">
+                                <span id="valor-dados"></span>
+                            </div>
+                        </div>
+                        <button id="jogar-dado" class="btn-dado animate__animated animate__pulse animate__infinite">
+                            <span class="dado-icon">🎲</span>
+                            <span class="dado-texto">Lançar Dado</span>
+                        </button>
+                    </div>
+                    <div id="animacao-dado" class="animacao-dado animate__animated animate__bounceIn" style="display: none;">
+                        <div class="dado-bg">
+                            <span id="valor-dado-atual"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-board">
+                    <div class="tabuleiro animate__animated animate__zoomIn">
+                        {% for linha in tabuleiro %}
+                        <div class="linha">
+                            {% for cor in linha %}
+                            <div class="casa {{ cor }}" data-cor="{{ cor }}"></div>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div id="pergunta-container" class="pergunta-container" style="display: none;">
+                <div id="tempo-container" class="tempo-container">
+                    <span id="tempo-label">⏳ Tempo restante: </span>
+                    <span id="tempo">40</span>
+                    <span> segundos</span>
+                </div>
+                <h3 id="pergunta-texto"></h3>
+                <div id="opcoes-container" class="opcoes"></div>
+            </div>
+
+            <div id="mensagem" class="mensagem" style="display: none;"></div>
+            
+            <button id="reiniciar" class="btn-secundario">Reiniciar Jogo 🔄</button>
+        </div>
+    </div>
+
+    <script>
+        // Variáveis globais
+        let dadosJogados = [];
+        let timer;
+        const casaPremiada = '5,5';
+        
+        // Cores e pontuações
+        const PONTOS_COR = {
+            'red': 3,    // Vermelho🟥
+            'blue': 5,   // Azul🟦
+            'green': 2   // Verde🟩
+        };
+
+        // Função de início do jogo
+        document.getElementById('comecar-jogo').addEventListener('click', () => {
+            document.getElementById('regras').style.display = 'none';
+            document.getElementById('jogo').style.display = 'block';
+        });
+
+        // Função para esperar
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Animação do dado
+        async function animarDado() {
+            const animacaoDiv = document.getElementById('animacao-dado');
+            const valorAtual = document.getElementById('valor-dado-atual');
+            
+            animacaoDiv.style.display = 'block';
+            valorAtual.textContent = "Girando o dado...";
+            
+            for (let i = 0; i < 10; i++) {
+                const valor = Math.floor(Math.random() * 6) + 1;
+                valorAtual.textContent = `🎲 ${valor}`;
+                await sleep(100);
+            }
+            
+            const response = await fetch('/jogar_dado');
+            const data = await response.json();
+            valorAtual.textContent = `🎲 ${data.valor}`;
+            await sleep(500);
+            
+            animacaoDiv.style.display = 'none';
+            return data.valor;
+        }
+
+        // Girar o dado
+        document.getElementById('jogar-dado').addEventListener('click', async () => {
+            if (dadosJogados.length >= 2) {
+                mostrarMensagem('Aguarde a próxima rodada!');
+                return;
+            }
+
+            const valor = await animarDado();
+            dadosJogados.push(valor);
+            
+            document.getElementById('valor-dados').textContent = dadosJogados.join(', ');
+
+            if (dadosJogados.length < 2) {
+                mostrarMensagem(`Primeiro dado: ${valor}. Gire novamente.`);
+            } else {
+                const coordenada = {
+                    x: dadosJogados[0],
+                    y: dadosJogados[1]
+                };
+                
+                if (`${coordenada.x},${coordenada.y}` === casaPremiada) {
+                    mostrarMensagem('🎉 Você tirou a casa premiada! Vitória automática!');
+                    await sleep(2000);
+                    await fetch('/reiniciar_jogo');
+                    location.reload();
+                    return;
+                }
+                
+                mostrarPergunta(coordenada);
+                marcarCasaTabuleiro(coordenada);
+            }
+        });
+
+        // Marcar casa no tabuleiro
+        function marcarCasaTabuleiro(coordenada) {
+            document.querySelectorAll('.casa').forEach(casa => {
+                casa.classList.remove('selecionada');
+            });
+
+            const linha = coordenada.x - 1;
+            const coluna = coordenada.y - 1;
+
+            const linhas = document.querySelectorAll('.linha');
+            if (linhas[linha]) {
+                const casas = linhas[linha].querySelectorAll('.casa');
+                if (casas[coluna]) {
+                    casas[coluna].classList.add('selecionada');
+                }
+            }
+        }
+
+        // Mostrar pergunta
+        async function mostrarPergunta(coordenada) {
+            const response = await fetch('/get_pergunta', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(coordenada)
+            });
+
+            const data = await response.json();
+            if (data.erro) {
+                mostrarMensagem(data.erro);
+                dadosJogados = [];
+                document.getElementById('valor-dados').textContent = '';
+                return;
+            }
+
+            const container = document.getElementById('pergunta-container');
+            const casaSelecionada = document.querySelector('.casa.selecionada');
+            const cor = casaSelecionada ? casaSelecionada.dataset.cor : '';
+            
+            container.style.display = 'block';
+            // Remove todas as classes de cor antigas
+            container.classList.remove('red', 'blue', 'green');
+            // Adiciona a classe da cor atual
+            if (cor) {
+                container.classList.add(cor);
+            }
+            
+            document.getElementById('pergunta-texto').textContent = data.questao;
+
+            const opcoesContainer = document.getElementById('opcoes-container');
+            opcoesContainer.innerHTML = '';
+            data.opcoes.forEach(opcao => {
+                const button = document.createElement('button');
+                button.textContent = opcao;
+                button.classList.add('btn-opcao');
+                button.addEventListener('click', () => verificarResposta(opcao, coordenada));
+                opcoesContainer.appendChild(button);
+            });
+
+            iniciarTimer();
+        }
+
+        // Timer
+        function iniciarTimer() {
+            let tempo = 40;
+            document.getElementById('tempo').textContent = tempo;
+            
+            clearInterval(timer);
+            timer = setInterval(() => {
+                tempo--;
+                document.getElementById('tempo').textContent = tempo;
+                
+                if (tempo <= 0) {
+                    clearInterval(timer);
+                    tempoEsgotado();
+                }
+            }, 1000);
+        }
+
+        // Verificar resposta
+        async function verificarResposta(resposta, coordenada) {
+            clearInterval(timer);
+            
+            try {
+                const casaSelecionada = document.querySelector('.casa.selecionada');
+                const cor = casaSelecionada ? casaSelecionada.dataset.cor : '';
+                
+                const response = await fetch('/verificar_resposta', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        resposta: resposta,
+                        coordenada: coordenada,
+                        cor: cor // Enviando a cor para o backend
+                    })
+                });
+
+                const data = await response.json();
+                
+                document.getElementById('pergunta-container').style.display = 'none';
+                
+                if (data.correto) {
+                    mostrarMensagem(`✅ Resposta correta! Jogador ganha ${data.pontos_ganhos} pontos.`);
+                } else {
+                    mostrarMensagem('❌ Resposta errada! Você perdeu a vez.');
+                }
+
+                atualizarPlacar(data.pontos);
+                atualizarJogadorAtual(data.jogador_atual);
+                
+                if (data.pontos['1'] >= 10 || data.pontos['2'] >= 10) {
+                    const vencedor = data.pontos['1'] >= 10 ? 1 : 2;
+                    await sleep(1000);
+                    mostrarMensagem(`🎉 Jogador ${vencedor} venceu!`);
+                    await sleep(2000);
+                    location.reload();
+                    return;
+                }
+
+                await sleep(1500);
+                dadosJogados = [];
+                document.getElementById('valor-dados').textContent = '';
+                document.querySelectorAll('.casa').forEach(casa => casa.classList.remove('selecionada'));
+                
+            } catch (error) {
+                console.error('Erro ao verificar resposta:', error);
+                mostrarMensagem('❌ Erro ao verificar resposta. Tente novamente.');
+            }
+        }
+
+        // Tempo esgotado
+        function tempoEsgotado() {
+            mostrarMensagem('⏳ Tempo esgotado! Passando a vez...');
+            document.getElementById('pergunta-container').style.display = 'none';
+            dadosJogados = [];
+            document.getElementById('valor-dados').textContent = '';
+            document.querySelectorAll('.casa').forEach(casa => casa.classList.remove('selecionada'));
+            fetch('/proximo_jogador');
+        }
+
+        // Mostrar mensagem
+        function mostrarMensagem(texto) {
+            const mensagem = document.getElementById('mensagem');
+            if (mensagem) {
+                mensagem.textContent = texto;
+                mensagem.style.display = 'block';
+                setTimeout(() => {
+                    if (mensagem.style.display !== 'none') {
+                        mensagem.style.display = 'none';
+                    }
+                }, 3000);
+            }
+        }
+
+        // Atualizar placar
+        function atualizarPlacar(pontos) {
+            document.getElementById('pontos-1').textContent = pontos['1'];
+            document.getElementById('pontos-2').textContent = pontos['2'];
+        }
+
+        // Atualizar jogador atual
+        function atualizarJogadorAtual(jogador) {
+            document.getElementById('jogador-atual').textContent = jogador;
+        }
+
+        // Reiniciar jogo
+        document.getElementById('reiniciar').addEventListener('click', async () => {
+            if (confirm('Tem certeza que deseja reiniciar o jogo?')) {
+                const response = await fetch('/reiniciar_jogo');
+                const data = await response.json();
+                if (data.success) {
+                    location.reload();
+                }
+            }
+        });
+    </script>
 </body>
-
 </html>
